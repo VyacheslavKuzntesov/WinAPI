@@ -3,6 +3,8 @@
 #include<stdio.h>
 #include"resource.h"
 
+
+
 CONST CHAR g_szClassName[] = "MyWindowClass";
 CONST CHAR g_szTitle[] = "My First Windows";
 
@@ -73,11 +75,25 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	return msg.wParam;
 }
 
+static HWND hStat;
+HINSTANCE hInst;
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{
 	case WM_CREATE:
+	{
+		CreateWindow("static", "ScreenResolution:",
+			WS_CHILD | WS_VISIBLE,
+			50, 50, 120, 15,
+			hwnd, (HMENU)1,
+			((LPCREATESTRUCT)lParam)->hInstance, NULL);
+
+		hStat = CreateWindow("static", "0", WS_CHILD | WS_VISIBLE,
+			180, 50, 120, 15, hwnd, 0, hInst, NULL);
+		ShowWindow(hStat, SW_SHOWNORMAL);
+	}
 		break;
 	case WM_COMMAND:
 		break;
@@ -94,6 +110,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		int window_height = rect.bottom - rect.top;
 		sprintf(buffer, "%s - position: %dx%d, size:%dx%d", g_szTitle, window_start_x, window_start_y, window_width, window_height);
 		SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)buffer);
+		sprintf(buffer, "size:%dx%d", window_width, window_height);
+		SetWindowText(hStat, buffer);
 	}
 		break;
 	case WM_CLOSE:
