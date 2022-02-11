@@ -4,7 +4,7 @@
 
 CONST CHAR* words[] =
 {
-	"This", "is", "my", "first", "Combo", "Box"
+	"This", "is", "my", "first", "List", "Box"
 };
 
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
