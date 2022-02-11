@@ -75,7 +75,8 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	return msg.wParam;
 }
 
-static HWND hStat;
+static HWND hSize;
+static HWND hPosition;
 HINSTANCE hInst;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -90,9 +91,19 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			hwnd, (HMENU)1,
 			((LPCREATESTRUCT)lParam)->hInstance, NULL);
 
-		hStat = CreateWindow("static", "0", WS_CHILD | WS_VISIBLE,
+		CreateWindow("static", "ScreenPosition:",
+			WS_CHILD | WS_VISIBLE,
+			50, 85, 105, 15,
+			hwnd, (HMENU)1,
+			((LPCREATESTRUCT)lParam)->hInstance, NULL);
+
+		hSize = CreateWindow("static", "0", WS_CHILD | WS_VISIBLE,
 			180, 50, 120, 15, hwnd, 0, hInst, NULL);
-		ShowWindow(hStat, SW_SHOWNORMAL);
+		ShowWindow(hSize, SW_SHOWNORMAL);
+
+		hPosition = CreateWindow("static", "0", WS_CHILD | WS_VISIBLE,
+			180, 85, 120, 15, hwnd, 0, hInst, NULL);
+		ShowWindow(hPosition, SW_SHOWNORMAL);
 	}
 		break;
 	case WM_COMMAND:
@@ -111,7 +122,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		sprintf(buffer, "%s - position: %dx%d, size:%dx%d", g_szTitle, window_start_x, window_start_y, window_width, window_height);
 		SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)buffer);
 		sprintf(buffer, "size:%dx%d", window_width, window_height);
-		SetWindowText(hStat, buffer);
+		SetWindowText(hSize, buffer);
+		sprintf(buffer, "position:%dx%d", window_start_x, window_start_y);
+		SetWindowText(hPosition, buffer);
 	}
 		break;
 	case WM_CLOSE:
