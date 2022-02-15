@@ -85,6 +85,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 	{
+		/*RECT rect;
+		GetClientRect(hwnd, &rect);
+
 		CreateWindow("static", "ScreenResolution:",
 			WS_CHILD | WS_VISIBLE,
 			50, 50, 120, 15,
@@ -103,7 +106,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 		hPosition = CreateWindow("static", "0", WS_CHILD | WS_VISIBLE,
 			180, 85, 120, 15, hwnd, 0, hInst, NULL);
-		ShowWindow(hPosition, SW_SHOWNORMAL);
+		ShowWindow(hPosition, SW_SHOWNORMAL);*/
+
 	}
 		break;
 	case WM_COMMAND:
@@ -121,10 +125,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		int window_height = rect.bottom - rect.top;
 		sprintf(buffer, "%s - position: %dx%d, size:%dx%d", g_szTitle, window_start_x, window_start_y, window_width, window_height);
 		SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)buffer);
-		sprintf(buffer, "size:%dx%d", window_width, window_height);
+		/*sprintf(buffer, "size:%dx%d", window_width, window_height);
 		SetWindowText(hSize, buffer);
 		sprintf(buffer, "position:%dx%d", window_start_x, window_start_y);
-		SetWindowText(hPosition, buffer);
+		SetWindowText(hPosition, buffer);*/
+
 	}
 		break;
 	case WM_CLOSE:
