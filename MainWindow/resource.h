@@ -7,6 +7,8 @@
 #define IDI_ICON1                       103
 #define IDC_CURSOR1                     104
 
+#define IDC_TOOLTIP						1100
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
